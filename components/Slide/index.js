@@ -33,7 +33,7 @@ const Slide = ({ posts }) => {
 				length={3}
 				showControls={true}
 				showIndicators={false}
-				className="z-depth-1"
+				className="z-depth-1 w-100"
 				slide>
 				<MDBCarouselInner>{posts.map(SlideItem)}</MDBCarouselInner>
 			</MDBCarousel>
