@@ -1,43 +1,17 @@
-import Document, { Head, Main, NextScript } from 'next/document';
-import flush from 'styled-jsx/server';
+import App, { Container } from 'next/app';
+import React from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+// import { Layout, TabBar } from '../components';
 
-export default class MyDocument extends Document {
-	static getInitialProps ({ renderPage }) {
-		const { html, head, errorHtml, chunks } = renderPage();
-		const styles = flush();
-		return { html, head, errorHtml, chunks, styles };
-	}
-
+export default class MyApp extends App {
 	render () {
+		const { Component, pageProps } = this.props;
 		return (
-			<html>
-				<Head>
-					<meta
-						name="viewport"
-						content="width=device-width, initial-scale=1.0"
-					/>
-					<link
-						rel="stylesheet"
-						href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-						integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
-						crossOrigin="anonymous"
-					/>
-				</Head>
-				<body>
-					<Main />
-					<script
-						src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-						integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-						crossOrigin="anonymous"
-					/>
-					<script
-						src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
-						integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
-						crossOrigin="anonymous"
-					/>
-					<NextScript />
-				</body>
-			</html>
+			<Container>
+				<Component {...pageProps} />
+			</Container>
 		);
 	}
 }
