@@ -1,59 +1,17 @@
-import { Component } from 'react';
-import apiHandler from '../util/apiHandler';
+import { withApiHandler } from '../util/apiHandler';
+import { Slide } from '../components';
+import { Fragment } from 'react';
 
-class App extends Component {
-	static async getInitialProps ({ req }) {
-		try {
-			const { data } = await apiHandler(
-				{ method: 'get', url: 'api/posts' },
-				req
-			);
-			return { posts: data };
-		} catch (error) {
-			console.error(error);
-			return { posts: [] };
-		}
-	}
+const Home = ({ posts }) => (
+	<Fragment>
+		<div className="header">
+			<h1>Keystone Next Example</h1>
+		</div>
+		{posts ? <Slide posts={posts} /> : 'İçerik bulunamadı.'}
+	</Fragment>
+);
 
-	render () {
-		return (
-			<div className="container">
-				<style jsx>{`
-					.header {
-						padding: 16px 16px;
-					}
-					.content {
-						padding: 16px 16px;
-					}
-					.post {
-						margin-bottom: 16px;
-					}
-				`}</style>
-				<div className="header">
-					<h1>Keystone Next Example</h1>
-				</div>
-				<div className="content">
-					{this.props.posts.map((post, i) => {
-						return (
-							<div className="post" key={i}>
-								<div className="row">
-									<div className="col-12 col-md-4">
-										<img className="img-fluid" src={post.image.secure_url} />
-									</div>
-									<div className="col-12 col-md-8">
-										<h2>{post.title}</h2>
-										<div
-											dangerouslySetInnerHTML={{ __html: post.content.brief }}
-										/>
-									</div>
-								</div>
-							</div>
-						);
-					})}
-				</div>
-			</div>
-		);
-	}
-}
-
-export default App;
+export default withApiHandler(Home)(
+	{ method: 'get', url: 'api/posts' },
+	'posts'
+);
