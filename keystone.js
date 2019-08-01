@@ -24,6 +24,7 @@ keystone.init({
 	'cookie secret': '7843oaerngdsm,.bgfl;kewaoipqw89y7q24ht54wkhry;klduy8gty',
 });
 keystone.import('models');
+keystone.set('session store', 'mongo');
 keystone.set('locals', {
 	_: require('lodash'),
 	env: keystone.get('env'),
