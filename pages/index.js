@@ -1,10 +1,18 @@
 import { Component } from 'react';
-import axios from 'axios';
+import apiHandler from '../util/apiHandler';
 
 class App extends Component {
-	static async getInitialProps () {
-		let response = await axios.get('/api/posts');
-		return { posts: response.data };
+	static async getInitialProps ({ req }) {
+		try {
+			const { data } = await apiHandler(
+				{ method: 'get', url: '/api/posts' },
+				req
+			);
+			return { posts: data };
+		} catch (error) {
+			console.error(error);
+			return { posts: [] };
+		}
 	}
 
 	render () {
