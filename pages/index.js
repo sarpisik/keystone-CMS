@@ -5,7 +5,7 @@ class App extends Component {
 	static async getInitialProps ({ req }) {
 		try {
 			const { data } = await apiHandler(
-				{ method: 'get', url: '/api/posts' },
+				{ method: 'get', url: 'api/posts' },
 				req
 			);
 			return { posts: data };
