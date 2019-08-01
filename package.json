@@ -28,6 +28,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "next build",
+    "heroku-postbuild": "npm run build",
     "start": "node keystone.js"
   }
 }
