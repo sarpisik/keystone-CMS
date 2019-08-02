@@ -13,7 +13,6 @@ const absoluteUrl = (req, setLocalhost) => {
 	return url.format({
 		protocol,
 		host,
-		pathname: '/', // req.url
 	});
 };
 
@@ -24,7 +23,7 @@ export const apiHandler = (options, req) => {
 			? baseUrl + options.url
 			: options.url.indexOf('localhost') > -1
 			? options.url
-			: `http://localhost:3000/${options.url}`;
+			: `http://localhost:3000${options.url}`;
 	return axios(options);
 };
 

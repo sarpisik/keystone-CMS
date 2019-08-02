@@ -1,1 +1,10 @@
 // Your custom styles
+.matches {
+	width: 100%;
+}
+
+@media (min-width: 576px) {
+	.matches {
+		width: 75%;
+	}
+}

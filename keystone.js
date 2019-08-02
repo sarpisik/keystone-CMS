@@ -48,8 +48,8 @@ app.prepare().then(() => {
 		enquiries: 'enquiries',
 		users: 'users',
 		teams: 'teams',
-		leagues: 'leagues',
-		fixtures: ['fixtures', 'fixture-categories'],
+		seasons: 'seasons',
+		matches: ['matches', 'match-categories'],
 		sponsors: 'sponsors',
 	});
 
