@@ -41,11 +41,16 @@ app.prepare().then(() => {
 	// Load your project's Routes
 	keystone.set('routes', require('./routes')(app));
 
+	// Admin UI navigation bar.
 	keystone.set('nav', {
 		posts: ['posts', 'post-categories'],
 		galleries: 'galleries',
 		enquiries: 'enquiries',
 		users: 'users',
+		teams: 'teams',
+		leagues: 'leagues',
+		fixtures: ['fixtures', 'fixture-categories'],
+		sponsors: 'sponsors',
 	});
 
 	if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
