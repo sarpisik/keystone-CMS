@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var { onImageRemove } = require('../util/backend');
 
 /**
  * Sponsor Model
@@ -18,8 +19,16 @@ Sponsor.add({
 		type: Types.Date,
 		index: true,
 	},
-	image: { type: Types.CloudinaryImage },
+	image: {
+		type: Types.CloudinaryImage,
+		select: true,
+		autoCleanup: true,
+		selectPrefix: '/sponsors',
+		folder: '/sponsors',
+		generateFilename: file => file.originalname.replace(/ /g, '-'),
+	},
 });
 
+Sponsor.schema.pre('remove', onImageRemove);
 Sponsor.defaultColumns = 'name, createdDate|20%, image|20%';
 Sponsor.register();

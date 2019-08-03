@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var { onImageRemove } = require('../util/backend');
 
 /**
  * Team Model
@@ -18,8 +19,16 @@ Team.add({
 		type: Types.Date,
 		index: true,
 	},
-	image: { type: Types.CloudinaryImage },
+	image: {
+		type: Types.CloudinaryImage,
+		select: true,
+		autoCleanup: true,
+		selectPrefix: '/logos',
+		folder: '/logos',
+		generateFilename: file => file.originalname.replace(/ /g, '-'),
+	},
 });
 
+Team.schema.pre('remove', onImageRemove);
 Team.defaultColumns = 'name, createdDate|20%, author|20%, image|20%';
 Team.register();
