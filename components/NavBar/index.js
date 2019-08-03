@@ -55,12 +55,15 @@ const SoacialItem = ({ href, icon }) => (
 	</MDBNavItem>
 );
 
-const NavBar = () => {
+const NavBar = ({ navBarRef }) => {
 	const [collapse, setCollapse] = useState(false),
 		toggleCollapse = () => setCollapse(!collapse);
 
 	return (
-		<MDBNavbar color="teal darken-4" dark expand="md" scrolling fixed="top">
+		<nav
+			ref={navBarRef}
+			className="navbar navbar-dark fixed-top navbar-expand-md teal darken-4"
+			role="navigation">
 			<MDBNavbarBrand>
 				<img
 					src={BrandLogo}
@@ -75,7 +78,7 @@ const NavBar = () => {
 				<MDBNavbarNav left>{SocialLinks.map(SoacialItem)}</MDBNavbarNav>
 				<MDBNavbarNav right>{Links.map(LinkItem)}</MDBNavbarNav>
 			</MDBCollapse>
-		</MDBNavbar>
+		</nav>
 	);
 };
 

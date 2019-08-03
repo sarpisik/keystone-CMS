@@ -32,16 +32,20 @@ const MatchCategory = ({ category }) => (
 );
 
 const Club = ({ name, image: { secure_url } }) => (
-	<MDBRow className="flex-column align-items-center">
-		<div style={{ width: 100 }}>
-			<img className="d-block w-100" src={secure_url} alt={name} />
-		</div>
-		<MDBCardText>{name}</MDBCardText>
-	</MDBRow>
+	<MDBCol className="d-flex align-items-center justify-content-center" md={4}>
+		<MDBRow className="flex-column align-items-center justify-content-between">
+			<div className="w-100" style={{ maxWidth: 100 }}>
+				<img className="d-block w-100" src={secure_url} alt={name} />
+			</div>
+			<MDBCardText>{name}</MDBCardText>
+		</MDBRow>
+	</MDBCol>
 );
 
 const Score = ({ home, away }) => (
-	<MDBCardTitle className="h3-responsive font-weight-bold">{`${home} - ${away}`}</MDBCardTitle>
+	<MDBCol className="align-items-center justify-content-center d-flex" md={4}>
+		<MDBCardTitle className="h3-responsive font-weight-bold">{`${home} - ${away}`}</MDBCardTitle>
+	</MDBCol>
 );
 
 const Stadium = ({ location }) => (
@@ -71,9 +75,11 @@ export const MatchCard = ({
 			<MDBCardBody className="green-text py-2">
 				<Date date={dateFormatter(date)} />
 				<MatchCategory category={name} />
-				<Club {...homeTeam} />
-				<Score home={homeTeamScore} away={awayTeamScore} />
-				<Club {...awayTeam} />
+				<MDBRow>
+					<Club {...homeTeam} />
+					<Score home={homeTeamScore} away={awayTeamScore} />
+					<Club {...awayTeam} />
+				</MDBRow>
 				<Stadium location={location} />
 			</MDBCardBody>
 		</MDBCard>

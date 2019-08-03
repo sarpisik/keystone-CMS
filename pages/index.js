@@ -4,15 +4,10 @@ import { Fragment } from 'react';
 import axios from 'axios';
 import { POSTS, HOME_PAGE_MATCHES } from '../constants/api';
 
-const Home = ({ posts, matches }) => {
-	console.log(posts);
-	console.log(matches);
+const Home = ({ posts, matches, ...dimensions }) => {
 	return (
 		<Fragment>
-			<div className="header">
-				<h1>Keystone Next Example</h1>
-			</div>
-			{posts ? <Slide posts={posts} /> : 'İçerik bulunamadı.'}
+			{posts ? <Slide {...dimensions} posts={posts} /> : 'İçerik bulunamadı.'}
 			{matches && (
 				<Matches
 					finished={matches.finished[0]}

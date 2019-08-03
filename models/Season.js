@@ -22,5 +22,11 @@ Season.add({
 	name: { type: String, index: true, required: true },
 });
 
+Season.relationship({
+	ref: 'Match',
+	path: 'matches',
+	refPath: 'season',
+});
+
 Season.defaultColumns = 'name';
 Season.register();
