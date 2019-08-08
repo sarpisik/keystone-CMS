@@ -20,7 +20,13 @@ const Home = ({ posts, matches, ...dimensions }) => {
 
 Home.getInitialProps = async ({ req }) => {
 	try {
-		const posts = { method: 'get', url: POSTS },
+		const posts = {
+				method: 'get',
+				url: POSTS,
+				params: {
+					count: 3,
+				},
+			},
 			matches = { method: 'get', url: HOME_PAGE_MATCHES },
 			[postsApi, matchesApi] = await axios.all([
 				apiHandler(posts, req),
